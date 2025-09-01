@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Multi-App Showcase</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            background-color: #f3f4f6; 
+            color: #374151; 
+        }
+        .section-content {
+            display: none; 
+        }
+        .section-content.active {
+            display: block; 
+        }
+    </style>
+</head>
+<body>
+    <div class="min-h-screen bg-gray-100 font-sans text-gray-800">
+        <nav class="bg-gradient-to-r from-blue-600 to-purple-600 p-4 shadow-lg sticky top-0 z-50">
+            <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
+                <div class="text-white text-3xl font-extrabold mb-4 md:mb-0">My Multi-App Showcase</div>
+                <div class="flex flex-wrap justify-center space-x-4">
+                    <button id="nav-portfolio" class="nav-item text-black text-lg font-medium px-4 py-2 rounded-lg transition-all duration-300 ease-in-out bg-white text-blue-600 shadow-md transform scale-105">
+                        Portfolio
+                    </button>
+                    <button id="nav-todo" class="nav-item text-black text-lg font-medium px-4 py-2 rounded-lg transition-all duration-300 ease-in-out hover:bg-blue-700 hover:text-white">
+                        To-Do App
+                    </button>
+                    <button id="nav-products" class="nav-item text-black text-lg font-medium px-4 py-2 rounded-lg transition-all duration-300 ease-in-out hover:bg-blue-700 hover:text-white">
+                        Products
+                    </button>
+                </div>
+            </div>
+        </nav>
+        <main class="container mx-auto p-6">
+            <div id="portfolio-section" class="section-content active">
+                <div class="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-6 mb-12">
+                    <button id="scroll-about" class="bg-blue-500 text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-blue-600 transition-colors duration-300 shadow-md">
+                        About
+                    </button>
+                    <button id="scroll-projects" class="bg-purple-500 text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-purple-600 transition-colors duration-300 shadow-md">
+                        Projects
+                    </button>
+                    <button id="scroll-contact" class="bg-green-500 text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-green-600 transition-colors duration-300 shadow-md">
+                        Contact
+                    </button>
+                </div>
+
+                <!-- About Section Content -->
+                <section id="about" class="bg-white p-8 rounded-xl shadow-lg mb-10 transform transition-all duration-500 hover:scale-[1.005] border-t-4 border-blue-500">
+                    <h2 class="text-4xl font-extrabold text-blue-700 mb-6 text-center">About Me</h2>
+                    <div class="flex flex-col md:flex-row items-center space-y-6 md:space-y-0 md:space-x-8">
+                        <div class="md:w-1/3 flex justify-center">
+                            <img src="https://placehold.co/200x200/4F46E5/FFFFFF?text=Profile" alt="Profile Picture" class="rounded-full border-4 border-blue-300 shadow-xl"/>
+                        </div>
+                        <div class="md:w-2/3 text-lg leading-relaxed text-gray-700">
+                            <p class="mb-4">
+                                Hello! I'm a passionate web developer with a keen eye for creating dynamic, responsive, and user-friendly web applications. My journey in web development began with a fascination for how interactive experiences are crafted online, leading me to dive deep into modern technologies like JavaScript, HTML, and CSS (especially Tailwind CSS).
+                            </p>
+                            <p class="mb-4">
+                                I thrive on solving complex problems and turning innovative ideas into tangible digital solutions. With a strong foundation in front-end development, I specialize in building intuitive user interfaces and optimizing performance for seamless user experiences across all devices.
+                            </p>
+                            <p>
+                                This showcase demonstrates a few of my capabilities, from crafting multi-page websites and managing data persistence with local storage to developing interactive filtering and sorting functionalities for product displays. I am always eager to learn new technologies and contribute to exciting projects.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Projects Section Content -->
+                <section id="projects" class="bg-white p-8 rounded-xl shadow-lg mb-10 transform transition-all duration-500 hover:scale-[1.005] border-t-4 border-purple-500">
+                    <h2 class="text-4xl font-extrabold text-purple-700 mb-8 text-center">My Projects</h2>
+                    <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <!-- Project cards will be injected here by JavaScript -->
+                    </div>
+                </section>
+
+                <!-- Contact Section Content -->
+                <section id="contact" class="bg-white p-8 rounded-xl shadow-lg transform transition-all duration-500 hover:scale-[1.005] border-t-4 border-green-500">
+                    <h2 class="text-4xl font-extrabold text-green-700 mb-8 text-center">Contact Me</h2>
+                    <div class="max-w-xl mx-auto">
+                        <p class="text-center text-lg text-gray-700 mb-6">
+                            Have a question or want to work together? Feel free to reach out!
+                        </p>
+                        <form id="contact-form" class="space-y-6">
+                            <div>
+                                <label for="name" class="block text-lg font-medium text-gray-700 mb-2">Name</label>
+                                <input type="text" id="name" name="name" class="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500 transition duration-200" placeholder="Your Name" required/>
+                            </div>
+                            <div>
+                                <label for="email" class="block text-lg font-medium text-gray-700 mb-2">Email</label>
+                                <input type="email" id="email" name="email" class="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500 transition duration-200" placeholder="your.email@example.com" required/>
+                            </div>
+                            <div>
+                                <label for="message" class="block text-lg font-medium text-gray-700 mb-2">Message</label>
+                                <textarea id="message" name="message" rows="5" class="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500 transition duration-200 resize-y" placeholder="Your message here..." required></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-green-600 text-white text-xl font-semibold py-3 rounded-lg hover:bg-green-700 transition-colors duration-300 shadow-md transform hover:scale-[1.01]">
+                                Send Message
+                            </button>
+                            <p id="form-status" class="mt-4 text-center text-green-600 font-semibold text-lg hidden"></p>
+                        </form>
+                    </div>
+                </section>
+            </div>
+
+            <!-- To-Do List / Note-Taking App Section -->
+            <div id="todo-section" class="section-content">
+                <section class="bg-white p-8 rounded-xl shadow-lg mb-10 border-t-4 border-indigo-500 transform transition-all duration-500 hover:scale-[1.005]">
+                    <h2 class="text-4xl font-extrabold text-indigo-700 mb-8 text-center">My To-Do List / Notes</h2>
+
+                    <!-- Add Task Form -->
+                    <form id="todo-form" class="flex flex-col sm:flex-row items-center gap-4 mb-8 max-w-xl mx-auto">
+                        <input type="text" id="todo-input" placeholder="Add a new task or note..." class="flex-grow p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 text-lg w-full sm:w-auto"/>
+                        <button type="submit" class="bg-indigo-600 text-white px-6 py-3 rounded-lg shadow-md hover:bg-indigo-700 transition-colors duration-300 text-lg w-full sm:w-auto">
+                            Add Task
+                        </button>
+                    </form>
+
+                    <!-- Filters and Sort Controls -->
+                    <div class="flex flex-wrap justify-center gap-4 mb-8">
+                        <!-- Filter buttons -->
+                        <div class="flex flex-wrap gap-2 p-2 bg-gray-50 rounded-lg shadow-sm">
+                            <span class="text-gray-700 font-medium self-center mr-2">Filter:</span>
+                            <button class="filter-btn px-4 py-2 rounded-full text-sm font-semibold transition-colors duration-200 bg-indigo-500 text-white" data-filter="all">All</button>
+                            <button class="filter-btn px-4 py-2 rounded-full text-sm font-semibold transition-colors duration-200 bg-gray-200 text-gray-700 hover:bg-gray-300" data-filter="active">Active</button>
+                            <button class="filter-btn px-4 py-2 rounded-full text-sm font-semibold transition-colors duration-200 bg-gray-200 text-gray-700 hover:bg-gray-300" data-filter="completed">Completed</button>
+                        </div>
+
+                        <!-- Sort dropdown -->
+                        <div class="flex items-center gap-2 p-2 bg-gray-50 rounded-lg shadow-sm">
+                            <label for="sort-tasks" class="text-gray-700 font-medium">Sort:</label>
+                            <select id="sort-tasks" class="p-2 border border-gray-300 rounded-lg bg-white shadow-sm focus:ring-indigo-500 focus:border-indigo-500 text-sm">
+                                <option value="none">None</option>
+                                <option value="asc">Oldest First</option>
+                                <option value="desc">Newest First</option>
+                            </select>
+                        </div>
+
+                        <!-- Search input -->
+                        <div class="flex items-center gap-2 p-2 bg-gray-50 rounded-lg shadow-sm">
+                            <label for="search-tasks" class="text-gray-700 font-medium">Search:</label>
+                            <input type="text" id="search-tasks" placeholder="Search tasks..." class="p-2 border border-gray-300 rounded-lg bg-white shadow-sm focus:ring-indigo-500 focus:border-indigo-500 text-sm"/>
+                        </div>
+                    </div>
+
+                    <!-- Task List -->
+                    <ul id="todo-list" class="space-y-4 max-w-2xl mx-auto">
+                        <!-- Tasks will be injected here by JavaScript -->
+                    </ul>
+                    <p id="no-todo-message" class="text-center text-gray-600 text-xl py-8 hidden">No tasks found. Add a new one!</p>
+                </section>
+            </div>
+
+            <!-- Product Listing Page Section -->
+            <div id="products-section" class="section-content">
+                <section class="bg-white p-8 rounded-xl shadow-lg mb-10 border-t-4 border-rose-500 transform transition-all duration-500 hover:scale-[1.005]">
+                    <h2 class="text-4xl font-extrabold text-rose-700 mb-8 text-center">Our Products</h2>
+
+                    <!-- Filter and Sort Controls -->
+                    <div class="flex flex-col md:flex-row flex-wrap justify-center gap-4 mb-8 p-4 bg-gray-50 rounded-lg shadow-sm">
+                        <!-- Category Filter -->
+                        <div class="flex items-center gap-2">
+                            <label for="category-filter" class="text-gray-700 font-medium">Category:</label>
+                            <select id="category-filter" class="p-2 border border-gray-300 rounded-lg bg-white shadow-sm focus:ring-rose-500 focus:border-rose-500 text-base">
+                                <!-- Options will be injected by JavaScript -->
+                            </select>
+                        </div>
+
+                        <!-- Price Filter -->
+                        <div class="flex items-center gap-2">
+                            <label class="text-gray-700 font-medium">Price Range:</label>
+                            <input type="number" id="min-price" placeholder="Min Price" class="w-28 p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-rose-500 focus:border-rose-500 text-base"/>
+                            <span class="text-gray-500">-</span>
+                            <input type="number" id="max-price" placeholder="Max Price" class="w-28 p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-rose-500 focus:border-rose-500 text-base"/>
+                        </div>
+
+                        <!-- Sort Options -->
+                        <div class="flex items-center gap-2">
+                            <label for="sort-products" class="text-gray-700 font-medium">Sort By:</label>
+                            <select id="sort-products" class="p-2 border border-gray-300 rounded-lg bg-white shadow-sm focus:ring-rose-500 focus:border-rose-500 text-base">
+                                <option value="none">Default</option>
+                                <option value="price-asc">Price: Low to High</option>
+                                <option value="price-desc">Price: High to Low</option>
+                                <option value="rating-desc">Rating: High to Low</option>
+                                <option value="rating-asc">Rating: Low to High</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Product Grid -->
+                    <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                        <!-- Product cards will be injected here by JavaScript -->
+                    </div>
+                    <p id="no-products-message" class="text-center text-gray-600 text-xl py-8 hidden">No products match your criteria. Try adjusting the filters!</p>
+                </section>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-gray-800 text-white p-6 text-center mt-12 rounded-t-xl shadow-inner">
+            <p>&copy; <span id="current-year"></span> Created by Keerthi sai. All rights reserved.</p>
+            <p>Built with HTML, CSS & JavaScript</p>
+        </footer>
+    </div>
+
+    <script>
+        // --- Global Data ---
+        var portfolioProjects = [
+            {
+                id: 1,
+                name: 'Vivo T4x 5G Product Page',
+                category: 'Mobile Phone',
+                description: 'A responsive product showcase for the Vivo T4x 5G, highlighting its large battery, fast charging, and robust durability.',
+                imageUrl: 'https://placehold.co/400x300/a6c2f7/000?text=Vivo+T4x+5G'
+            },
+            {
+                id: 2,
+                name: 'Redmi A5 Product Page',
+                category: 'Mobile Phone',
+                description: 'Developed a feature page for the Redmi A5, emphasizing its large 120Hz display, powerful processor, and AI dual camera.',
+                imageUrl: 'https://placehold.co/400x300/f7a6c2/000?text=Redmi+A5'
+            },
+            {
+                id: 3,
+                name: 'Moto G45 5G Product Page',
+                category: 'Mobile Phone',
+                description: 'Designed a landing page for the Moto G45 5G, focusing on its next-gen Snapdragon processor and premium design.',
+                imageUrl: 'https://placehold.co/400x300/a6f7c2/000?text=Moto+G45+5G'
+            },
+            {
+                id: 4,
+                name: 'Galaxy F05 Product Page',
+                category: 'Mobile Phone',
+                description: 'Created a product display for the Samsung Galaxy F05, showcasing its unique leather pattern and 50MP dual camera.',
+                imageUrl: 'https://placehold.co/400x300/c2a6f7/000?text=Galaxy+F05'
+            },
+            {
+                id: 5,
+                name: 'POCO C75 5G Product Page',
+                category: 'Mobile Phone',
+                description: 'Built an interactive page for the POCO C75 5G, featuring its Snapdragon processor and 120Hz display.',
+                imageUrl: 'https://placehold.co/400x300/f7c2a6/000?text=POCO+C75+5G'
+            },
+            {
+                id: 6,
+                name: 'Redmi 13 5G Product Page',
+                category: 'Mobile Phone',
+                description: 'A sleek presentation page for the Redmi 13 5G, highlighting its aesthetic design and 5G capabilities.',
+                imageUrl: 'https://placehold.co/400x300/c2f7a6/000?text=Redmi+13+5G'
+            },
+            {
+                id: 7,
+                name: 'POCO M7 Pro 5G Product Page',
+                category: 'Mobile Phone',
+                description: 'Developed a detailed page for the POCO M7 Pro 5G, emphasizing its gOLED display and MediaTek Dimensity processor.',
+                imageUrl: 'https://placehold.co/400x300/a6f7f7/000?text=POCO+M7+Pro+5G'
+            },
+            {
+                id: 8,
+                name: 'Infinix Note 50s 5G Product Page',
+                category: 'Mobile Phone',
+                description: 'Showcase page for the Infinix Note 50s 5G, focusing on its slim curved AMOLED display and military-grade durability.',
+                imageUrl: 'https://placehold.co/400x300/f7f7a6/000?text=Infinix+Note+50s+5G'
+            },
+            {
+                id: 9,
+                name: 'Realme 14 Pro+ 5G Product Page',
+                category: 'Mobile Phone',
+                description: 'A promotional page for the Realme 14 Pro+ 5G, highlighting its advanced features and connectivity.',
+                imageUrl: 'https://placehold.co/400x300/f7a6f7/000?text=Realme+14+Pro%2B+5G'
+            },
+            {
+                id: 10,
+                name: 'Lava Blaze 2 5G Product Page',
+                category: 'Mobile Phone',
+                description: 'Created a vibrant product page for the Lava Blaze 2 5G, emphasizing its modern design and 5G readiness.',
+                imageUrl: 'https://placehold.co/400x300/a6a6f7/000?text=Lava+Blaze+2+5G'
+            },
+        ];
+
+        var allProductsData = [
+            { id: 1, name: 'Vivo T4x 5G', category: 'Vivo', price: 14999, rating: 4.5, imageUrl: '1.webp' },
+            { id: 2, name: 'REDMI A5', category: 'Redmi', price: 6499, rating: 4.0, imageUrl: '2.webp' },
+            { id: 3, name: 'Moto G45 5G', category: 'Motorola', price: 11999, rating: 4.8, imageUrl: '3.webp' },
+            { id: 4, name: 'Galaxy F05', category: 'Samsung', price: 6249, rating: 4.2, imageUrl: '4.webp' },
+            { id: 5, name: 'POCO C75 5G', category: 'POCO', price: 7699, rating: 3.9, imageUrl: '5.webp' },
+            { id: 6, name: 'Redmi 13 5G', category: 'Redmi', price: 13999, rating: 4.1, imageUrl: '6.webp' },
+            { id: 7, name: 'POCO M7 Pro 5G', category: 'POCO', price: 9499, rating: 4.6, imageUrl: '7.webp' },
+            { id: 8, name: 'Infinix Note 50s 5G', category: 'Infinix', price: 15999, rating: 4.3, imageUrl: '8.webp' },
+            { id: 9, name: 'Realme 14 Pro+ 5G', category: 'Realme', price: 34999, rating: 4.9, imageUrl: '9.webp' },
+            { id: 10, name: 'Lava Blaze 2 5G', category: 'Lava', price: 9999, rating: 3.8, imageUrl: '10.webp' },
+        ];
+
+
+        // --- Page Navigation Logic ---
+        document.addEventListener('DOMContentLoaded', function() {
+            var navButtons = document.querySelectorAll('.nav-item');
+            var sections = document.querySelectorAll('.section-content');
+            var currentYearSpan = document.getElementById('current-year');
+            currentYearSpan.textContent = new Date().getFullYear();
+
+            
+            function showSection(sectionId) {
+                var i;
+                for (i = 0; i < sections.length; i++) {
+                    sections[i].classList.remove('active');
+                }
+                document.getElementById(sectionId).classList.add('active');
+
+                for (i = 0; i < navButtons.length; i++) {
+                    navButtons[i].classList.remove('bg-white', 'text-blue-600', 'shadow-md', 'transform', 'scale-105');
+                    navButtons[i].classList.add('hover:bg-blue-700', 'hover:text-white');
+                }
+                var activeNavButton = document.getElementById('nav-' + sectionId.replace('-section', ''));
+                if (activeNavButton) {
+                    activeNavButton.classList.add('bg-white', 'text-blue-600', 'shadow-md', 'transform', 'scale-105');
+                    activeNavButton.classList.remove('hover:bg-blue-700', 'hover:text-white');
+                }
+            }
+
+            var i;
+            for (i = 0; i < navButtons.length; i++) {
+                navButtons[i].addEventListener('click', function(event) {
+                    var sectionId = event.target.id.replace('nav-', '') + '-section';
+                    showSection(sectionId);
+                });
+            }
+
+            document.getElementById('scroll-about').addEventListener('click', function() {
+                document.getElementById('about').scrollIntoView({ behavior: 'smooth' });
+            });
+            document.getElementById('scroll-projects').addEventListener('click', function() {
+                document.getElementById('projects').scrollIntoView({ behavior: 'smooth' });
+            });
+            document.getElementById('scroll-contact').addEventListener('click', function() {
+                document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+            });
+
+            var projectsGrid = document.getElementById('projects-grid');
+            function renderPortfolioProjects() {
+                projectsGrid.innerHTML = ''; 
+                var i;
+                for (i = 0; i < portfolioProjects.length; i++) {
+                    var project = portfolioProjects[i];
+                    var projectCard = document.createElement('div');
+                    projectCard.className = 'bg-gray-50 rounded-lg shadow-md overflow-hidden transform transition-transform duration-300 hover:scale-105 hover:shadow-xl';
+                    projectCard.innerHTML =
+                        '<img src="' + project.imageUrl + '" alt="' + project.name + '" class="w-full h-48 object-cover border-b border-gray-200" onerror="this.onerror=null;this.src=\'https://placehold.co/400x300/cccccc/333333?text=Image+Missing\';"/>' +
+                        '<div class="p-6">' +
+                            '<h3 class="text-2xl font-bold text-gray-900 mb-2">' + project.name + '</h3>' +
+                            '<span class="inline-block bg-purple-100 text-purple-800 text-xs font-semibold px-2.5 py-0.5 rounded-full mb-3">' +
+                                project.category +
+                            '</span>' +
+                            '<p class="text-gray-700 text-base">' + project.description + '</p>' +
+                            '<a href="#" class="mt-4 inline-block bg-purple-600 text-white px-5 py-2 rounded-lg hover:bg-purple-700 transition-colors duration-300 shadow-md">' +
+                                'View Details' +
+                            '</a>' +
+                        '</div>';
+                    projectsGrid.appendChild(projectCard);
+                }
+            }
+            renderPortfolioProjects(); 
+
+            var contactForm = document.getElementById('contact-form');
+            var formStatusMessage = document.getElementById('form-status');
+            contactForm.addEventListener('submit', function(event) {
+                event.preventDefault(); 
+
+                
+                formStatusMessage.textContent = 'Message sent successfully!';
+                formStatusMessage.classList.remove('hidden', 'text-red-600');
+                formStatusMessage.classList.add('text-green-600');
+                setTimeout(function() {
+                    formStatusMessage.classList.add('hidden');
+                }, 3000);
+
+                contactForm.reset(); 
+            });
+
+            // --- 2. To-Do List / Note-Taking App Logic ---
+
+            var todoInput = document.getElementById('todo-input');
+            var todoForm = document.getElementById('todo-form');
+            var todoList = document.getElementById('todo-list');
+            var filterButtons = document.querySelectorAll('.filter-btn');
+            var sortTasksSelect = document.getElementById('sort-tasks');
+            var searchTasksInput = document.getElementById('search-tasks');
+            var noTodoMessage = document.getElementById('no-todo-message');
+
+            var tasks = []; 
+            var currentFilter = 'all';
+            var currentSort = 'none';
+            var currentSearchTerm = '';
+
+            
+            function loadTasks() {
+                try {
+                    var storedTasks = localStorage.getItem('html-todo-tasks');
+                    if (storedTasks) {
+                        tasks = JSON.parse(storedTasks);
+                    }
+                } catch (error) {
+                    console.error("Failed to load tasks from localStorage:", error);
+                    tasks = []; 
+                }
+                renderTasks();
+            }
+            function saveTasks() {
+                try {
+                    localStorage.setItem('html-todo-tasks', JSON.stringify(tasks));
+                } catch (error) {
+                    console.error("Failed to save tasks to localStorage:", error);
+                }
+            }
+
+            
+            function renderTasks() {
+                todoList.innerHTML = ''; 
+
+                var filteredAndSortedTasks = tasks.filter(function(task) {
+                    if (currentFilter === 'completed') {
+                        return task.completed;
+                    }
+                    if (currentFilter === 'active') {
+                        return !task.completed;
+                    }
+                    return true; 
+                }).filter(function(task) {
+                   
+                    return task.text.toLowerCase().indexOf(currentSearchTerm.toLowerCase()) !== -1;
+                });
+
+                
+                filteredAndSortedTasks.sort(function(a, b) {
+                    if (currentSort === 'none') {
+                        return 0;
+                    }
+                    if (currentSort === 'asc') {
+                        return new Date(a.timestamp) - new Date(b.timestamp);
+                    }
+                    if (currentSort === 'desc') {
+                        return new Date(b.timestamp) - new Date(a.timestamp);
+                    }
+                    return 0;
+                });
+
+                if (filteredAndSortedTasks.length === 0) {
+                    noTodoMessage.classList.remove('hidden');
+                } else {
+                    noTodoMessage.classList.add('hidden');
+                }
+
+                var i;
+                for (i = 0; i < filteredAndSortedTasks.length; i++) {
+                    var task = filteredAndSortedTasks[i];
+                    var listItem = document.createElement('li');
+                    listItem.className = 'flex items-center bg-gray-50 p-4 rounded-lg shadow-md transition-all duration-200 ease-in-out ' + (task.completed ? 'opacity-70 line-through bg-green-50' : '');
+                    listItem.innerHTML =
+                        '<input type="checkbox" data-id="' + task.id + '" ' + (task.completed ? 'checked' : '') + ' class="form-checkbox h-6 w-6 text-indigo-600 rounded-md focus:ring-indigo-500 cursor-pointer"/>' +
+                        '<span class="flex-grow ml-4 text-lg text-gray-800 break-words">' + task.text + '</span>' +
+                        '<button data-id="' + task.id + '" class="delete-btn ml-4 p-2 bg-red-500 text-white rounded-full hover:bg-red-600 transition-colors duration-200 shadow-sm flex-shrink-0" aria-label="Delete task">' +
+                            '<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">' +
+                                '<path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 011-1h4a1 1 0 110 2H8a1 1 0 01-1-1zm3 3a1 1 0 011-1h1a1 1 0 110 2h-1a1 1 0 01-1-1zm-3 3a1 1 0 011-1h4a1 1 0 110 2H8a1 1 0 01-1-1z" clip-rule="evenodd" />' +
+                            '</svg>' +
+                        '</button>';
+                    todoList.appendChild(listItem);
+                }
+            }
+
+            
+            todoForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                var text = todoInput.value.trim();
+                if (text) {
+                    var newTask = {
+                        id: Date.now(),
+                        text: text,
+                        completed: false,
+                        timestamp: new Date().toISOString()
+                    };
+                    tasks.push(newTask); 
+                    todoInput.value = '';
+                    saveTasks();
+                    renderTasks();
+                }
+            });
+
+            
+            todoList.addEventListener('click', function(event) {
+                var target = event.target;
+                var closestLi = target.closest('li');
+                var idElement = closestLi ? (closestLi.querySelector('input[type="checkbox"]') || closestLi.querySelector('.delete-btn')) : null;
+                var id = idElement ? parseInt(idElement.dataset.id) : null;
+
+                if (target.type === 'checkbox') {
+                    tasks = tasks.map(function(task) {
+                        if (task.id === id) {
+                            var updatedTask = {};
+                            for (var key in task) {
+                                updatedTask[key] = task[key];
+                            }
+                            updatedTask.completed = !task.completed;
+                            return updatedTask;
+                        }
+                        return task;
+                    });
+                    saveTasks();
+                    renderTasks();
+                } else if (target.closest('.delete-btn')) {
+                    tasks = tasks.filter(function(task) {
+                        return task.id !== id;
+                    });
+                    saveTasks();
+                    renderTasks();
+                }
+            });
+
+            // Filter tasks
+            for (i = 0; i < filterButtons.length; i++) {
+                filterButtons[i].addEventListener('click', function(event) {
+                    currentFilter = event.target.dataset.filter;
+                    var j;
+                    for (j = 0; j < filterButtons.length; j++) {
+                        filterButtons[j].classList.remove('bg-indigo-500', 'text-white');
+                        filterButtons[j].classList.add('bg-gray-200', 'text-gray-700', 'hover:bg-gray-300');
+                    }
+                    event.target.classList.add('bg-indigo-500', 'text-white');
+                    event.target.classList.remove('bg-gray-200', 'text-gray-700', 'hover:bg-gray-300');
+                    renderTasks();
+                });
+            }
+
+            // Sort tasks
+            sortTasksSelect.addEventListener('change', function(event) {
+                currentSort = event.target.value;
+                renderTasks();
+            });
+
+           
+            searchTasksInput.addEventListener('input', function(event) {
+                currentSearchTerm = event.target.value;
+                renderTasks();
+            });
+
+            loadTasks(); 
+
+
+            // --- 3. Product Listing Page Logic ---
+
+            var productGrid = document.getElementById('product-grid');
+            var categoryFilterSelect = document.getElementById('category-filter');
+            var minPriceInput = document.getElementById('min-price');
+            var maxPriceInput = document.getElementById('max-price');
+            var sortProductsSelect = document.getElementById('sort-products');
+            var noProductsMessage = document.getElementById('no-products-message');
+
+            var filteredProducts = allProductsData.slice(); // Start with all products (ES5 equivalent of spread)
+            var selectedProductCategory = 'All';
+            var minPriceValue = '';
+            var maxPriceValue = '';
+            var currentSortOption = 'none';
+
+            
+            function populateCategoryFilter() {
+                var categories = ['All'];
+                var seenCategories = {}; 
+                var i;
+                for (i = 0; i < allProductsData.length; i++) {
+                    var category = allProductsData[i].category;
+                    if (!seenCategories[category]) {
+                        categories.push(category);
+                        seenCategories[category] = true;
+                    }
+                }
+                categoryFilterSelect.innerHTML = categories.map(function(cat) {
+                    return '<option value="' + cat + '">' + cat + '</option>';
+                }).join('');
+            }
+
+            
+            function renderProducts() {
+                productGrid.innerHTML = ''; 
+
+                var productsToDisplay = allProductsData.slice(); 
+                // 1. Filter by Category
+                if (selectedProductCategory !== 'All') {
+                    productsToDisplay = productsToDisplay.filter(function(product) {
+                        return product.category === selectedProductCategory;
+                    });
+                }
+
+                // 2. Filter by Price
+                var minP = parseFloat(minPriceValue);
+                var maxP = parseFloat(maxPriceValue);
+                if (!isNaN(minP)) {
+                    productsToDisplay = productsToDisplay.filter(function(product) {
+                        return product.price >= minP;
+                    });
+                }
+                if (!isNaN(maxP)) {
+                    productsToDisplay = productsToDisplay.filter(function(product) {
+                        return product.price <= maxP;
+                    });
+                }
+
+                // 3. Sort
+                productsToDisplay.sort(function(a, b) {
+                    switch (currentSortOption) {
+                        case 'price-asc':
+                            return a.price - b.price;
+                        case 'price-desc':
+                            return b.price - a.price;
+                        case 'rating-asc':
+                            return a.rating - b.rating;
+                        case 'rating-desc':
+                            return b.rating - a.rating;
+                        default:
+                            return 0; 
+                    }
+                });
+
+                if (productsToDisplay.length === 0) {
+                    noProductsMessage.classList.remove('hidden');
+                } else {
+                    noProductsMessage.classList.add('hidden');
+                }
+
+                var i;
+                for (i = 0; i < productsToDisplay.length; i++) {
+                    var product = productsToDisplay[i];
+                    var productCard = document.createElement('div');
+                    productCard.className = 'bg-gray-50 rounded-lg shadow-md overflow-hidden transform transition-transform duration-300 hover:scale-105 hover:shadow-xl';
+                    productCard.innerHTML =
+                        '<div class="flex items-center justify-center p-4 h-64 bg-gray-100 border-b border-gray-200">' + 
+                            '<img src="' + product.imageUrl + '" alt="' + product.name + '" class="w-auto h-auto max-h-full object-contain" onerror="this.onerror=null;this.src=\'https://placehold.co/400x300/cccccc/333333?text=Image+Missing\';"/>' +
+                        '</div>' +
+                        '<div class="p-5">' +
+                            '<h3 class="text-xl font-bold text-gray-900 mb-2">' + product.name + '</h3>' +
+                            '<p class="text-gray-700 text-sm mb-1">Category: <span class="font-semibold text-rose-600">' + product.category + '</span></p>' +
+                            '<p class="text-2xl font-extrabold text-green-700 mb-2">₹' + product.price.toFixed(2) + '</p>' +
+                            '<div class="flex items-center text-yellow-500">' +
+                                '<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">' +
+                                    '<path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.683-1.532 1.118l-2.8-2.034a1 1 0 00-1.176 0l-2.8 2.034c-.777.565-1.833-.197-1.532-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.929 8.72c-.783-.57-.38-1.81.588-1.81h3.462a1 1 0 00.95-.69l1.07-3.292z" />' +
+                                '</svg>' +
+                                '<span class="text-gray-800 font-bold">' + product.rating.toFixed(1) + '</span>' +
+                            '</div>' +
+                            '<button class="mt-4 w-full bg-rose-600 text-white py-2 rounded-lg hover:bg-rose-700 transition-colors duration-300 shadow-md">' +
+                                'Add to Cart' +
+                            '</button>' +
+                        '</div>';
+                    productGrid.appendChild(productCard);
+                }
+            }
+
+            // Event listeners for product filters and sort
+            categoryFilterSelect.addEventListener('change', function(event) {
+                selectedProductCategory = event.target.value;
+                renderProducts();
+            });
+
+            minPriceInput.addEventListener('input', function(event) {
+                minPriceValue = event.target.value;
+                renderProducts();
+            });
+
+            maxPriceInput.addEventListener('input', function(event) {
+                maxPriceValue = event.target.value;
+                renderProducts();
+            });
+
+            sortProductsSelect.addEventListener('change', function(event) {
+                currentSortOption = event.target.value;
+                renderProducts();
+            });
+
+            populateCategoryFilter(); // Populate categories on load
+            renderProducts(); // Initial render of products
+        });
+    </script>
+</body>
+</html>
